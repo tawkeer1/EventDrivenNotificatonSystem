@@ -9,6 +9,9 @@ public class ScheduledEvent implements Event{
     private final String eventType;
 
     public ScheduledEvent(String eventType) {
+        if(eventType == null || eventType.isEmpty()){
+            throw new IllegalArgumentException("EventType should not be null or empty");
+        }
         this.eventType = eventType;
     }
 
