@@ -19,5 +19,4 @@ public interface Subscriber {
         Objects.requireNonNull(event, "Event must not be null");
         return true;
     }
-
 }

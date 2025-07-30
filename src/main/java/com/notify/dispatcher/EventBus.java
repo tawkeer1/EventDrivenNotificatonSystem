@@ -1,139 +1,97 @@
+// Updated EventBus.java with strict type-based subscriptions (no global subscribers)
 package com.notify.dispatcher;
 
 import com.notify.event.Event;
 import com.notify.subscriber.Subscriber;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class EventBus {
-
     private static final Logger logger = LoggerFactory.getLogger(EventBus.class);
 
-    private final List<Subscriber> subscribers = new CopyOnWriteArrayList<>();
-    private final List<Event> eventHistory = new CopyOnWriteArrayList<>();
+    // Map of event type -> Set of subscribers
+    private final ConcurrentMap<String, Set<Subscriber>> subscribersByType = new ConcurrentHashMap<>();
     private final BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
+    private final List<Event> eventHistory = new CopyOnWriteArrayList<>();
 
     private final ExecutorService dispatcherExecutor = Executors.newSingleThreadExecutor();
 
     public EventBus() {
-        startDispatcher();
+        dispatcherExecutor.submit(this::dispatchLoop);
     }
 
-    private void startDispatcher() {
-        dispatcherExecutor.submit(() -> {
-            while (true) {
-                try {
-                    Event event = eventQueue.take(); // Blocks until event available
-                    eventHistory.add(event);
-                    logger.info("Dispatching event of type '{}' at {}", event.getType(), event.getTimeStamp());
+    public void subscribe(String eventType, Subscriber subscriber) {
+        if (subscriber == null || subscriber.getId() == null || subscriber.getId().isBlank()) {
+            logger.warn("Cannot subscribe: subscriber or subscriber ID is null/blank");
+            return;
+        }
 
-                    for (Subscriber subscriber : subscribers) {
-                        if (subscriber != null && subscriber.shouldNotify(event)) {
-                            try {
-                                logger.info("Notifying subscriber '{}' (ID '{}')", subscriber.getName(), subscriber.getId());
-                                subscriber.notify(event);
-                            } catch (Exception ex) {
-                                logger.error("Failed to notify subscriber '{}'", subscriber.getName(), ex);
-                            }
-                        }
-                    }
+        subscribersByType
+                .computeIfAbsent(eventType, k -> ConcurrentHashMap.newKeySet())
+                .add(subscriber);
 
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                    logger.warn("Dispatcher thread interrupted. Exiting...");
-                    break;
-                } catch (Exception e) {
-                    logger.error("Unexpected error while dispatching event", e);
-                }
-            }
-        });
+        logger.info("Registered subscriber: {} (ID: {}) for event type: {}", subscriber.getName(), subscriber.getId(), eventType);
+    }
+
+    public void unsubscribe(String eventType, String subscriberId) {
+        if (subscriberId == null || subscriberId.isBlank()) {
+            logger.warn("Cannot unsubscribe: subscriber ID is null or blank");
+            return;
+        }
+
+        Set<Subscriber> subs = subscribersByType.get(eventType);
+        if (subs != null) {
+            subs.removeIf(s -> s.getId().equals(subscriberId));
+            logger.info("Unsubscribed subscriber ID: {} from event type: {}", subscriberId, eventType);
+        }
     }
 
     public void publish(Event event) {
         if (event == null) {
-            logger.warn("Cannot publish: event is null.");
+            logger.warn("Cannot publish: event is null");
             return;
         }
+        eventQueue.offer(event);
+    }
 
+    private void dispatchLoop() {
         try {
-            eventQueue.put(event); // Will block if queue is full
-            logger.info("Event of type '{}' added to queue", event.getType());
+            while (!Thread.currentThread().isInterrupted()) {
+                Event event = eventQueue.take();
+                eventHistory.add(event);
+
+                logger.info("Dispatching event: {} at {}", event.getType(), event.getTimeStamp());
+
+                Set<Subscriber> subscribers = subscribersByType.getOrDefault(event.getType(), Set.of());
+                for (Subscriber subscriber : subscribers) {
+                    if (subscriber.shouldNotify(event)) {
+                        CompletableFuture.runAsync(() -> subscriber.notify(event));
+                    }
+                }
+            }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            logger.warn("Interrupted while publishing event of type '{}'", event.getType());
-        }
-    }
-
-    public void subscribe(Subscriber subscriber) {
-        if (subscriber == null || subscriber.getId() == null || subscriber.getId().isBlank()) {
-            logger.warn("Cannot subscribe: subscriber or subscriber ID is null or blank.");
-            return;
-        }
-
-        boolean alreadyExists = subscribers.stream()
-                .anyMatch(s -> s.getId().equals(subscriber.getId()));
-
-        if (alreadyExists) {
-            logger.warn("Subscriber with ID '{}' already exists.", subscriber.getId());
-            return;
-        }
-
-        subscribers.add(subscriber);
-        logger.info("Registered new subscriber: '{}' with ID '{}'", subscriber.getName(), subscriber.getId());
-    }
-
-    public void unsubscribeById(String id) {
-        if (id == null || id.isBlank()) {
-            logger.warn("Cannot unsubscribe: ID is null or blank.");
-            return;
-        }
-
-        boolean removed = subscribers.removeIf(s -> s.getId().equals(id));
-        if (removed) {
-            logger.info("Removed subscriber with ID '{}'", id);
-        } else {
-            logger.warn("No subscriber found with ID '{}'", id);
+            logger.warn("Event dispatcher interrupted");
+        } catch (Exception e) {
+            logger.error("Error in event dispatch loop", e);
         }
     }
 
     public List<Event> getEventHistory(Predicate<Event> filter) {
-        if (filter == null) {
-            logger.warn("Filter predicate is null. Returning empty event list.");
-            return List.of();
-        }
-        return eventHistory.stream()
-                .filter(filter)
-                .collect(Collectors.toList());
+        if (filter == null) return List.of();
+        return eventHistory.stream().filter(filter).collect(Collectors.toList());
     }
 
     public List<Event> getAllEvents() {
         return List.copyOf(eventHistory);
     }
 
-    public Optional<Subscriber> getSubscriberById(String id) {
-        if (id == null || id.isBlank()) {
-            logger.warn("Cannot retrieve subscriber: ID is null or blank.");
-            return Optional.empty();
-        }
-
-        return subscribers.stream()
-                .filter(s -> s.getId().equals(id))
-                .findFirst();
-    }
-
-    public List<Subscriber> listSubscribers() {
-        return List.copyOf(subscribers);
-    }
-
     public void shutdown() {
         dispatcherExecutor.shutdownNow();
-        logger.info("EventBus dispatcher shut down.");
     }
 }
