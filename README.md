@@ -64,7 +64,7 @@ Then after running main class we can see menu showing various options like:
  - Subscriber menu to subscribe to events
 
 ## How to run tests
-   mvn test <br>
+   Run this command <br> mvn test <br>
 Test Coverage Includes:
 EventBusTest: verifies event dispatch and subscriber delivery
 
