@@ -52,7 +52,7 @@ generate events that notify relevant subscribers.
 ```bash
 git clone https://github.com/tawkeer1/notificationsystem.git
 cd notificationsystem
-
+bash```
 ## 2. Build Project
     use this command to build the project:
        mvn clean install
