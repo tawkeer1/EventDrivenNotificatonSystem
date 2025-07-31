@@ -44,4 +44,18 @@ public class FilteredSubscriber implements Subscriber {
     public boolean shouldNotify(Event event) {
         return filter.test(event);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FilteredSubscriber that = (FilteredSubscriber) o;
+        return Objects.equals(id, that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }
