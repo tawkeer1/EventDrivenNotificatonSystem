@@ -53,11 +53,11 @@ generate events that notify relevant subscribers.
 git clone https://github.com/tawkeer1/notificationsystem.git
 cd notificationsystem
 
-2. **Build the project**
+## 2. Build Project
     use this command to build the project:
        mvn clean install
 
-3. Running the project
+## 3. Running the project
     mvn exec:java -Dexec.mainClass="com.notify.Main"
 
 Then after running main class we can see menu showing various options like:
