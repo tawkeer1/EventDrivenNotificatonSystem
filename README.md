@@ -1,7 +1,7 @@
 # Notification System
 
-A Java-based **event-driven notification system** using the **Publisher-Subscriber pattern**. 
-This system simulates how users can subscribe to different types of events, and publishers can 
+A Java-based **event-driven notification system** using the **Publisher-Subscriber pattern**.
+This system simulates how users can subscribe to different types of events, and publishers can
 generate events that notify relevant subscribers.
 
 ---
@@ -10,21 +10,21 @@ generate events that notify relevant subscribers.
 ### Architecture
 
 - **EventBus**: Central message dispatcher that maintains:
-    - A queue of events to be dispatched asynchronously
-    - Mappings of subscribers by event type
-    - History of all events published
+  - A queue of events to be dispatched asynchronously
+  - Mappings of subscribers by event type
+  - History of all events published
 - **Event**: Interface implemented by various concrete event types:
-    - `TaskAddedEvent`
-    - `ReminderEvent`
-    - `SystemAlertEvent`
-    - `ScheduledEvent`
+  - `TaskAddedEvent`
+  - `ReminderEvent`
+  - `SystemAlertEvent`
+  - `ScheduledEvent`
 - **Publisher**: Generates events. Includes `UserPublisher` with a name and type.
 - **Subscriber**: Handles received events. Can be:
-    - Basic subscriber: listens to all events of a type
-    - Filtered subscriber: only responds if certain conditions are met (e.g., high priority, work hours)
+  - Basic subscriber: listens to all events of a type
+  - Filtered subscriber: only responds if certain conditions are met (e.g., high priority, work hours)
 - **Services**:
-    - `TaskService`: Creates and publishes `TaskAddedEvent`
-    - `ScheduledEventService`: Uses `ScheduledExecutorService` to periodically publish events
+  - `TaskService`: Creates and publishes `TaskAddedEvent`
+  - `ScheduledEventService`: Uses `ScheduledExecutorService` to periodically publish events
 
 ###  Features
 
@@ -49,23 +49,23 @@ generate events that notify relevant subscribers.
 
 1. **Clone the Repository**
 
-```bash
 git clone https://github.com/tawkeer1/notificationsystem.git
 cd notificationsystem
 
-2. **Build the project**
+## 2. Build Project
     use this command to build the project:
        mvn clean install
 
-3. Running the project
+## 3. Running the project
     mvn exec:java -Dexec.mainClass="com.notify.Main"
 
 Then after running main class we can see menu showing various options like:
- - Publisher menu to add various types of events
- - Subscriber menu to subscribe to events
+- Publisher menu to add various types of events
+- Subscriber menu to subscribe to events
 
 ## How to run tests
-   mvn test
+Run this command <br> **mvn test** <br>
+
 Test Coverage Includes:
 EventBusTest: verifies event dispatch and subscriber delivery
 
@@ -80,4 +80,4 @@ EdgeCaseTest: handles null events, duplicate subscribers, etc.
 PublisherTest: validates publisher attributes
 
 After tests run, results can be found in
-    target/surefire-reports/
+target/surefire-reports/
