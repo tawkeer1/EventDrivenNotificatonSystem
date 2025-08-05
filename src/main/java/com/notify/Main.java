@@ -180,8 +180,8 @@ public class Main {
     private static void userLogin() {
         String name = InputUtils.prompt(
                 "Enter your name: ",
-                s -> s != null && !s.trim().matches("\\d+"),
-                "Name cannot be only digits.",
+                s -> s != null && !s.isBlank() &&  !s.trim().matches("\\d+"),
+                "Name should not be empty or digits",
                 logger
         );
         String id = UUID.randomUUID().toString();
@@ -270,7 +270,4 @@ public class Main {
             logger.info("Waiting for 'back' command...");
         }
     }
-
-
-
 }

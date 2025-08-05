@@ -8,9 +8,7 @@ import java.util.Objects;
 public interface Subscriber {
     String getId();
 
-    default String getName(){
-       return "Anonymous";
-   }
+     String getName();
 
     void notify(Event event);
 

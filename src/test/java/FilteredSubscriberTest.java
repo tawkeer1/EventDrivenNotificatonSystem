@@ -36,7 +36,7 @@ class FilteredSubscriberTest {
                 event -> received.set(true)
         );
 
-        eventBus.subscribe("TASKADDED", subscriber); // ✅ match actual event type
+        eventBus.subscribe("TASKADDED", subscriber); // match actual event type
         eventBus.publish(new TaskAddedEvent("Urgent", Priority.HIGH), new UserPublisher("TestPublisher"));
 
         Thread.sleep(300); // allow for async delivery

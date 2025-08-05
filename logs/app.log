@@ -1,0 +1,85 @@
+2025-08-05 11:01:55 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: D1 (ID: id-1) for event type: TASKADDED
+2025-08-05 11:01:55 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: D1 (ID: id-1) for event type: TASKADDED
+2025-08-05 11:01:55 WARN  [pool-2-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:01:55 WARN  [main] com.notify.dispatcher.EventBus - Cannot publish: event is null
+2025-08-05 11:01:55 WARN  [pool-3-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:01:55 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Alice (ID: sub1) for event type: TASKADDED
+2025-08-05 11:01:55 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - Tester]
+2025-08-05 11:01:55 INFO  [pool-4-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:01:55.611203300
+2025-08-05 11:01:55 WARN  [pool-4-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:01:55 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Bob (ID: sub-2) for event type: TASKADDED
+2025-08-05 11:01:55 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - TestPublisher]
+2025-08-05 11:01:55 INFO  [pool-5-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:01:55.749368300
+2025-08-05 11:01:56 WARN  [pool-5-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:01:56 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Alice (ID: sub-1) for event type: TASKADDED
+2025-08-05 11:01:56 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - TestPublisher]
+2025-08-05 11:01:56 INFO  [pool-6-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:01:56.073221300
+2025-08-05 11:01:56 WARN  [pool-6-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:01:56 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Cron (ID: scheduler-id) for event type: SCHEDULEDEVENT
+2025-08-05 11:01:56 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:01:56 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:01:56.475860500
+2025-08-05 11:01:56 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:01:57 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:01:57 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:01:57 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:01:57.473029
+2025-08-05 11:01:58 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:01:58 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:01:58 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:01:58.474073100
+2025-08-05 11:01:59 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:01:59 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:01:59 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:01:59.472805800
+2025-08-05 11:01:59 INFO  [main] c.n.services.ScheduledEventService - ScheduledEventService executor shutdown.
+2025-08-05 11:01:59 WARN  [pool-7-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:01:59 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Admin (ID: admin-id) for event type: TASKADDED
+2025-08-05 11:01:59 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - Testpublisher]
+2025-08-05 11:01:59 INFO  [pool-9-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:01:59.986389
+2025-08-05 11:02:00 WARN  [pool-9-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:12:52 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: D1 (ID: id-1) for event type: TASKADDED
+2025-08-05 11:12:52 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: D1 (ID: id-1) for event type: TASKADDED
+2025-08-05 11:12:52 WARN  [pool-2-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:12:52 WARN  [main] com.notify.dispatcher.EventBus - Cannot publish: event is null
+2025-08-05 11:12:52 WARN  [pool-3-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:12:52 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Alice (ID: sub1) for event type: TASKADDED
+2025-08-05 11:12:52 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - Tester]
+2025-08-05 11:12:52 INFO  [pool-4-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:12:52.641829100
+2025-08-05 11:12:52 WARN  [pool-4-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:12:52 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Bob (ID: sub-2) for event type: TASKADDED
+2025-08-05 11:12:52 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - TestPublisher]
+2025-08-05 11:12:52 INFO  [pool-5-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:12:52.756595200
+2025-08-05 11:12:53 WARN  [pool-5-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:12:53 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Alice (ID: sub-1) for event type: TASKADDED
+2025-08-05 11:12:53 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - TestPublisher]
+2025-08-05 11:12:53 INFO  [pool-6-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:12:53.068070100
+2025-08-05 11:12:53 WARN  [pool-6-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:12:53 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Cron (ID: scheduler-id) for event type: SCHEDULEDEVENT
+2025-08-05 11:12:53 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:12:53 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:12:53 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:12:53.403166600
+2025-08-05 11:12:54 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:12:54 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:12:54 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:12:54.402403800
+2025-08-05 11:12:55 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:12:55 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:12:55 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:12:55.401806300
+2025-08-05 11:12:56 INFO  [pool-8-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - TestPublisher]
+2025-08-05 11:12:56 INFO  [pool-8-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'TestPublisher'
+2025-08-05 11:12:56 INFO  [pool-7-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:12:56.401308200
+2025-08-05 11:12:56 INFO  [main] c.n.services.ScheduledEventService - ScheduledEventService executor shutdown.
+2025-08-05 11:12:56 WARN  [pool-7-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:12:56 INFO  [main] com.notify.dispatcher.EventBus - Registered subscriber: Admin (ID: admin-id) for event type: TASKADDED
+2025-08-05 11:12:56 INFO  [main] com.notify.dispatcher.EventBus - Event of type 'TASKADDED' published by [USER - Testpublisher]
+2025-08-05 11:12:56 INFO  [pool-9-thread-1] com.notify.dispatcher.EventBus - Dispatching event: TASKADDED at 2025-08-05T11:12:56.928121500
+2025-08-05 11:12:57 WARN  [pool-9-thread-1] com.notify.dispatcher.EventBus - Event dispatcher interrupted
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - 
+========== Notification System ==========
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - 1. Publisher Login
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - 2. Subsriber Login
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - 3. List Subscribers
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - 4. View Subscribers by Event Type
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - 5. View Subscriptions by Subscriber
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - 0. Exit
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - -----------------------------------------
+2025-08-05 11:13:07 INFO  [main] com.notify.Main - Enter option: 
+2025-08-05 11:13:07 INFO  [pool-2-thread-1] com.notify.dispatcher.EventBus - Event of type 'SCHEDULEDEVENT' published by [USER - PubScheduler]
+2025-08-05 11:13:07 INFO  [pool-2-thread-1] c.n.services.ScheduledEventService - Scheduled event 'SCHEDULEDEVENT' published by 'PubScheduler'
+2025-08-05 11:13:07 INFO  [pool-1-thread-1] com.notify.dispatcher.EventBus - Dispatching event: SCHEDULEDEVENT at 2025-08-05T11:13:07.857186900
